@@ -1,2 +1,2 @@
-# API-anime-app
+# API for a sportswear e-commerce
 
