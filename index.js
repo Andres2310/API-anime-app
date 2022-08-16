@@ -11,16 +11,11 @@ const Model = require('./model/model');
 mongoose.connect(mongoDBenv);
 const database=mongoose.connection;
 
-const bodyParser=require("body-parser")
-
 const app = express();
 app.use(cors({
   origin: '*'
 }));
 
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(express.json());
 
 database.on("error",(error)=>{
@@ -59,6 +54,15 @@ database.once('connected',()=>{
     }
 })
 
+app.get('/products/:id', async (req, res) => {
+  try{
+      const data = await Model.findById(req.params.id);
+      res.json(data)
+  }
+  catch(error){
+      res.status(500).json({message: error.message})
+  }
+})
 
    app.post('/products', async (req, res) => {
     const data = new Model({
