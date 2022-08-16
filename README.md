@@ -1,2 +1,2 @@
-# API e-commerce sportswear
+# API for a sportswear e-commerce
 
